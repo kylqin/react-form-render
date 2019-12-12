@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select } from 'antd'
+import { Select, Button } from 'antd'
 import './App.css';
 import BigForm from './BigForm'
 import { fields } from './fields';
@@ -16,6 +16,10 @@ const App: React.FC = () => {
     column
   }
 
+  const addItem = () => {
+    // setFields()
+  }
+
   return (
     <div className="App">
       <Select value={layout} onChange={setLayout}>
@@ -30,6 +34,8 @@ const App: React.FC = () => {
         <Option value='3'>3</Option>
         <Option value='4'>4</Option>
       </Select>
+
+      <Button onChange={addItem}>新增</Button>
 
 
       <div className='form-container'>

@@ -1,6 +1,6 @@
-import { WidgetFuncType } from './create-field';
 import { FieldProps } from '../models/Field';
 import checkboxes from '../widgets/checkboxes';
+import dragger from '../widgets/dragger';
 import input from '../widgets/input';
 import number from '../widgets/number';
 import radio from '../widgets/radio';
@@ -9,11 +9,13 @@ import rate from '../widgets/rate';
 import select from '../widgets/select';
 import slider from '../widgets/slider';
 import switch_ from '../widgets/switch';
+import text from '../widgets/text';
 import upload from '../widgets/upload';
-import dragger from '../widgets/dragger';
+import { WidgetFuncType } from './create-field';
 
 
 const widgets: { [widgetName: string]: WidgetFuncType } = {
+  text,
   input,
   number,
   select,

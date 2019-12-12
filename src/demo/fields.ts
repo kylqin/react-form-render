@@ -8,7 +8,7 @@ const CD = {
 }
 
 export const fields = [
-  // { field: 'text01', title: '文本', type: 'string', widget: 'text', initialValue: 'Helo Lom' },
+  { field: 'text01', title: '文本', type: 'string', widget: 'text', initialValue: 'Helo Lom' },
 
   { field: 'input01', title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
   { field: 'input02', title: 'Input tootip', type: 'string', widget: 'input', tooltip: '这就是传说中的Tooltip!' },
@@ -30,6 +30,17 @@ export const fields = [
   { field: 'checkbox02', title: 'Checkboxes', type: 'array', widget: 'checkboxes', options: CO.abc, more: { colSpan: 8 } },
 
   { field: 'rate01', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
+
+  { field: 'obj01', title: 'Object', type: 'object', widget: 'object', properties: [
+    { field: 'rate01', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
+    { field: 'rate02', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
+    { field: 'rate03', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
+  ] },
+
+  { field: 'arr01', title: 'Array', type: 'array', widget: 'array', initialValue: [{}, {}], properties: [
+    { field: 'rate01', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
+    { field: 'rate02', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} }
+  ] },
 
   { field: 'upload01', title: 'Upload', type: 'array', widget: 'upload', more: {} },
   { field: 'upload02', title: '上传', type: 'array', widget: 'upload', more: { buttonText: '点击上传' } },
