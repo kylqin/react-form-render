@@ -1,0 +1,11 @@
+
+.App {
+  width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.form-container {
+  margin: 20px 0 0 0;
+}
