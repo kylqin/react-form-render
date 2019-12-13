@@ -60,7 +60,7 @@ const FormArray: FC<IFormArrayProps> = ({ form, p }) => {
       form.setFieldsValue({
         [field]: form.getFieldValue(field).filter((f: any, i: number) => i !== idx)
       }, () => {
-        setItemIds(itemIds.filter((id: string) => id !== _id))
+        setItemIds(itemIds.slice(0, itemIds.length - 1)) // fix 'dragging error after some item deleted', I do not kown why!
       })
     }
 
