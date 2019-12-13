@@ -1,9 +1,9 @@
-import { Form, Switch, Button, Row } from 'antd';
+import { Button, Form, Row } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { FormLayout, FormProps } from 'antd/lib/form/Form';
 import React, { FormEvent } from 'react';
-import { safeField, FieldPropsOptional } from '../models/Field';
-import { createField } from '../utils/create-field';
+import { FieldPropsOptional, safeField } from '../models/Field';
+import { createFields } from '../utils/create-field';
 
 
 export interface BigFormProps {
@@ -38,13 +38,12 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
 
     const _fields = fields.map(f => safeField(f))
 
-    const cfOptions = { column }
+    const cfOptions = { column: Number(column) || 2 }
 
     return (
       <Form {...formProps} onSubmit={this.handleSubmit}>
-        <div> hi </div>
         <Row>
-          {_fields.map(f => createField(form, f, cfOptions))}
+          {createFields(form, _fields, cfOptions)}
         </Row>
 
         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

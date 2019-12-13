@@ -1,4 +1,4 @@
-import { Form, Icon, Tooltip, Button, Col } from 'antd';
+import { Form, Icon, Tooltip, Button, Col, Row } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { ReactNode, useState, FC, MouseEvent } from 'react';
 import { defaultValue, FieldProps } from '../models/Field';
@@ -80,4 +80,35 @@ export const createField: TCreateField = (form, p, cfOptions) => {
       }
     )
   }</Col>
+}
+
+export type TCreateFieldS = (form: WrappedFormUtils<any>, fields: FieldProps[], cfOptions: ICreateFieldOptions) => ReactNode[]
+export const createFields: TCreateFieldS = (form, fields, cfOptions) => {
+  // return fields.map(f => createField(form, f, cfOptions))
+  const rows = putFieldsInRows(fields, cfOptions.column)
+  return rows.map((r, idx) => <Row key={idx}>{r.map(f => createField(form, f, cfOptions))}</Row>)
+}
+
+function putFieldsInRows (fields: FieldProps[], column: number) {
+  let row = []
+  let result = []
+  for (const f of fields) {
+    if (f.widget === 'object' || f.widget === 'array') {
+      row = []
+      result.push([f])
+    } else {
+      row.push(f)
+      if (row.length === column) {
+        result.push(row)
+        row = []
+      }
+    }
+  }
+
+  if (row.length) {
+    result.push(row)
+    row = []
+  }
+
+  return result
 }

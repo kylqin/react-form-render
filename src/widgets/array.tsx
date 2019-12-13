@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { FC, MouseEvent, useState } from 'react';
 import { FieldProps } from '../models/Field';
-import { createField, WidgetFuncType, ICreateFieldOptions, defaultICFO } from '../utils/create-field';
+import { WidgetFuncType, ICreateFieldOptions, defaultICFO, createFields } from '../utils/create-field';
 
 import {
   SortableContainer,
@@ -30,7 +30,7 @@ const FormArrayItem: FC<IFormArrayItem> = ({form, p, idx, addItem, deleteItem, c
   return <div key={`${field}[${idx}]`} className='smart-form-array-item-ctn'>
     <DragHandle />
     <div className='smart-form-array-item'>
-      {properties.map(ppt => createField(form, { ...ppt, field: `${field}[${idx}].${ppt.field}` }, cfOptions))}
+      {createFields(form, properties.map(ppt => ({ ...ppt, field: `${field}[${idx}].${ppt.field}` })), cfOptions)}
     </div>
     <div className='smart-form-array-item-buttons'>
       <Button onClick={addItem}>新增</Button>
