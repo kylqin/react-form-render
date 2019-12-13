@@ -3,12 +3,14 @@ import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { ReactNode, useState, FC, MouseEvent } from 'react';
 import { defaultValue, FieldProps } from '../models/Field';
 import { parseField } from './parse-field';
+import array_ from '../widgets/array'
 
 export interface WidgetMoreProps {
   propsForm: any
   fieldOptions: any
   propsWidget: any
 }
+const wmp = { propsForm: {}, fieldOptions: {}, propsWidget: {} }
 
 export type WidgetFuncType = (form: WrappedFormUtils<any>, p: FieldProps, more: WidgetMoreProps) => ReactNode
 
@@ -22,38 +24,6 @@ function formObjectItem (form: WrappedFormUtils<any>, p: FieldProps) {
   </div>
 }
 
-function formArrayItem (form: WrappedFormUtils<any>, p: FieldProps, idx: number, addItem: (event: MouseEvent<HTMLElement>) => void) {
-  const { field, properties } = p
-
-  return <div key={`${field}[${idx}]`}>
-    <div className='smart-form-array-item'>
-      {properties.map(ppt => createField(form, { ...ppt, field: `${field}[${idx}].${ppt.field}` }, ''))}
-    </div>
-    <div className='smart-form-array-item-buttons'>
-      <Button onClick={addItem}>新增</Button>
-    </div>
-  </div>
-}
-
-interface IFormArrayProps { form: WrappedFormUtils<any>, p: FieldProps }
-
-const FormArray: FC<IFormArrayProps> = ({ form, p }) => {
-    const { field, title, initialValue } = p
-    const [itemIds, setItemIds] = useState(
-      (new Array((initialValue || []).length))
-        .fill(null)
-        .map((_: any, idx: number) => idx)
-    )
-
-    const addItem = () => {
-      setItemIds(itemIds.concat([itemIds.length]))
-    }
-
-    return <div>
-      <div className='smart-form-array-title'>{title}</div>
-      {itemIds.map((_, idx: number) => formArrayItem(form, p, idx, addItem))}
-    </div>
-}
 
 export function createField (form: WrappedFormUtils<any>, p: FieldProps, dsPack: any) : ReactNode {
   const { type, properties, required, more, title, tooltip, extra, initialValue } = p
@@ -63,7 +33,7 @@ export function createField (form: WrappedFormUtils<any>, p: FieldProps, dsPack:
   }
 
   if (type === 'array' && properties.length) {
-    return <FormArray key={p.field} form={form} p={p} />
+    return array_(form, p, wmp)
   }
 
   let rules = required ? [{ required: true, message: 'The field is required!' }] : []

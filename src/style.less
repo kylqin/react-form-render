@@ -9,8 +9,24 @@
   // border: 1px solid #DDD;
   padding: 20px 10px;
 }
-.smart-form-array-item {
-  border: 1px solid #DDD;
-  padding: 20px 10px;
-  margin: 10px 0;
+.smart-form-array-item-ctn {
+  position: relative;
+
+  >.mover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 2px;
+    padding-right: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: move;
+    z-index: 99;
+  }
+
+  .smart-form-array-item {
+    border: 1px solid #DDD;
+    padding: 20px 10px;
+    margin: 10px 0;
+  }
 }

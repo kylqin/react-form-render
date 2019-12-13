@@ -39,7 +39,7 @@ export const fields = [
 
   { field: 'arr01', title: 'Array', type: 'array', widget: 'array', initialValue: [{}, {}], properties: [
     { field: 'rate01', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
-    { field: 'rate02', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} }
+    // { field: 'rate02', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} }
   ] },
 
   { field: 'upload01', title: 'Upload', type: 'array', widget: 'upload', more: {} },
