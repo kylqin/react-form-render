@@ -29,7 +29,7 @@ const widgets: { [widgetName: string]: WidgetFuncType } = {
   dragger
 }
 
-export function parseField(p: FieldProps, dsPack: any) : { widget: WidgetFuncType, props: any } {
+export function parseField(p: FieldProps) : { widget: WidgetFuncType, props: any } {
   const widget = widgets[p.widget]
 
   return { widget, props: p }

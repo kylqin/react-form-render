@@ -1,4 +1,4 @@
-import { Form, Icon, Tooltip, Button } from 'antd';
+import { Form, Icon, Tooltip, Button, Col } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { ReactNode, useState, FC, MouseEvent } from 'react';
 import { defaultValue, FieldProps } from '../models/Field';
@@ -12,28 +12,39 @@ export interface WidgetMoreProps {
 }
 const wmp = { propsForm: {}, fieldOptions: {}, propsWidget: {} }
 
-export type WidgetFuncType = (form: WrappedFormUtils<any>, p: FieldProps, more: WidgetMoreProps) => ReactNode
+export type WidgetFuncType = (form: WrappedFormUtils<any>, p: FieldProps, more: WidgetMoreProps, cfOptions?: ICreateFieldOptions) => ReactNode
+export interface ICreateFieldOptions {
+  column: number
+  [p: string]: any
+}
+export const defaultICFO = { column: 1 }
+export type TCreateField = (form: WrappedFormUtils<any>, p: FieldProps, cfOptions?: ICreateFieldOptions) => ReactNode
 
-function formObjectItem (form: WrappedFormUtils<any>, p: FieldProps) {
+const formObjectItem: TCreateField = (form, p, cfOptions) => {
   const { field, properties, title } = p
   return <div key={field}>
     <div className='smart-form-object-title'>{title}</div>
     <div className='smart-form-object-item'>
-      {properties.map(ppt => createField(form, { ...ppt, field: field + '.' + ppt.field}, ''))}
+      {properties.map(ppt => createField(form, { ...ppt, field: field + '.' + ppt.field}, cfOptions))}
     </div>
   </div>
 }
 
 
-export function createField (form: WrappedFormUtils<any>, p: FieldProps, dsPack: any) : ReactNode {
-  const { type, properties, required, more, title, tooltip, extra, initialValue } = p
+export const createField: TCreateField = (form, p, cfOptions) => {
+  const { field, type, properties, required, more, title, tooltip, extra, initialValue } = p
+  const { column } = cfOptions || defaultICFO
 
   if (type === 'object' && properties.length) {
-    return formObjectItem(form, p)
+    return <Col key={field} span={24}>
+      {formObjectItem(form, p, cfOptions)}
+    </Col>
   }
 
   if (type === 'array' && properties.length) {
-    return array_(form, p, wmp)
+    return <Col key={field} span={24}>
+      {array_(form, p, wmp, cfOptions)}
+    </Col>
   }
 
   let rules = required ? [{ required: true, message: 'The field is required!' }] : []
@@ -51,20 +62,22 @@ export function createField (form: WrappedFormUtils<any>, p: FieldProps, dsPack:
     </span>
   }
 
-  const { widget } = parseField(p, dsPack)
-  return widget(
-    form,
-    p,
-    {
-      propsForm: {
-        label,
-        extra
-      },
-      fieldOptions: {
-        rules,
-        initialValue: initialValue || defaultValue(p.type)
-      },
-      propsWidget: {}
-    }
-  )
+  const { widget } = parseField(p)
+  return <Col key={field} span={24 /column}>{
+    widget(
+      form,
+      p,
+      {
+        propsForm: {
+          label,
+          extra
+        },
+        fieldOptions: {
+          rules,
+          initialValue: initialValue || defaultValue(p.type)
+        },
+        propsWidget: {}
+      }
+    )
+  }</Col>
 }

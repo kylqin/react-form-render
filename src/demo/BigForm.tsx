@@ -1,4 +1,4 @@
-import { Form, Switch, Button } from 'antd';
+import { Form, Switch, Button, Row } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { FormLayout, FormProps } from 'antd/lib/form/Form';
 import React, { FormEvent } from 'react';
@@ -24,7 +24,7 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
   };
 
   render() {
-    const { form, layout, fields } = this.props
+    const { form, layout, column, fields } = this.props
     let formProps : FormProps = {
       hideRequiredMark: false,
       colon: false,
@@ -38,10 +38,14 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
 
     const _fields = fields.map(f => safeField(f))
 
+    const cfOptions = { column }
+
     return (
       <Form {...formProps} onSubmit={this.handleSubmit}>
         <div> hi </div>
-        {_fields.map(f => createField(form, f, ''))}
+        <Row>
+          {_fields.map(f => createField(form, f, cfOptions))}
+        </Row>
 
         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
           <Button type="primary" htmlType="submit">
