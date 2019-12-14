@@ -4,9 +4,8 @@ import { WidgetFuncType } from '../utils/create-field';
 
 const radio: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
   const { field, options } = p
-  const { label } = propsForm
 
-  return <Form.Item key={field} label={label} hasFeedback={false}>
+  return <Form.Item {...propsForm} key={field} hasFeedback={false}>
     {form.getFieldDecorator(field, {
       ...fieldOptions,
       valuePropName: 'checked'

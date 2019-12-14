@@ -11,21 +11,21 @@ export const fields = [
   { field: 'text01', title: '文本', type: 'string', widget: 'text', initialValue: 'Helo Lom' },
 
   { field: 'input01', title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
-  { field: 'input02', title: 'Input tootip', type: 'string', widget: 'input', tooltip: '这就是传说中的Tooltip!' },
+  { field: 'input02', span: 2, title: 'Input tootip', type: 'string', widget: 'input', tooltip: '这就是传说中的Tooltip!' },
 
   { field: 'number01', title: 'Number', type: 'number', widget: 'number', more: { unit: '吨'} },
 
   { field: 'obj01', title: 'Object', type: 'object', widget: 'object', properties: [
     { field: 'input01', title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
-    { field: 'input02', title: 'Input tootip', type: 'string', widget: 'input', tooltip: '这就是传说中的Tooltip!' },
+    { field: 'input02', span: 3, title: 'Input tootip', type: 'string', widget: 'input', tooltip: '这就是传说中的Tooltip!' },
 
     { field: 'number01', title: 'Number', type: 'number', widget: 'number', more: { unit: '吨'} },
   ] },
 
   { field: 'arr01', title: 'Array', type: 'array', widget: 'array', initialValue: [{}, {}], properties: [
     { field: 'rate01', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
-    { field: 'input01', title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra', required: true },
-    { field: 'select02', title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
+    { field: 'input01', span: 2, title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra', required: true },
+    { field: 'select02', span: 2, title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
     { field: 'select03', title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
     { field: 'input02', title: '中文', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
   ] },

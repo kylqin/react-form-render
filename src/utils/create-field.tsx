@@ -17,6 +17,7 @@ export interface ICreateFieldOptions {
   column: number
   layout: string
   colIndex?: number
+  isLastCol?: boolean
   [p: string]: any
 }
 export const defaultICFO = { column: 1 }
@@ -34,8 +35,8 @@ const formObjectItem: TCreateField = (form, p, cfOptions) => {
 
 
 export const createField: TCreateField = (form, p, cfOptions) => {
-  const { field, type, properties, required, more, title, tooltip, extra, initialValue } = p
-  const { column, layout, colIndex = 0 } = cfOptions || defaultICFO
+  const { field, type, span = 1, properties, required, more, title, tooltip, extra, initialValue } = p
+  const { column, layout, colIndex = 0, isLastCol = false } = cfOptions || defaultICFO
 
   if (type === 'object' && properties.length) {
     return <Col key={field} span={24}>
@@ -66,16 +67,14 @@ export const createField: TCreateField = (form, p, cfOptions) => {
 
   const COL_GAP = 40
   const { widget } = parseField(p)
-  let colClassName = 'smart-form-column' + (layout ? ` ${layout}` : '')
+  let colClassName = 'smart-form-column' + (layout ? ` ${layout}` : '') + (isLastCol ? ' last-column' : '')
   let colWidth = '100%'
   if (column === 1) {
     colWidth = '100%'
-    colClassName += ' last-column'
-  } else if (colIndex === column - 1) {
-    colWidth = `calc(${100 / column}% - ${COL_GAP}px)`
-    colClassName += ' last-column'
+  } else if (isLastCol) {
+    colWidth = `calc(${100 / column * span}% + ${COL_GAP / (column - 1) * (span - 1) - COL_GAP}px)`
   } else {
-    colWidth = `calc(${100 / column}% + ${COL_GAP / (column - 1)}px)`
+    colWidth = `calc(${100 / column * span}% + ${COL_GAP / (column - 1) * span}px)`
   }
   return <div key={field} className={colClassName} style={{ width: colWidth }}>{
     widget(
@@ -84,7 +83,8 @@ export const createField: TCreateField = (form, p, cfOptions) => {
       {
         propsForm: {
           label,
-          extra
+          extra,
+          className: 'smart-form-form-item'
         },
         fieldOptions: {
           rules,
@@ -99,33 +99,60 @@ export const createField: TCreateField = (form, p, cfOptions) => {
 
 export type TCreateFieldS = (form: WrappedFormUtils<any>, fields: FieldProps[], cfOptions: ICreateFieldOptions) => ReactNode[]
 export const createFields: TCreateFieldS = (form, fields, cfOptions) => {
-  const rows = putFieldsInRows(fields, cfOptions.column)
+  const { column } = cfOptions
+  const rows = putFieldsInRows(fields, column)
   return rows.map((r, idx) =>
     <div key={idx} className='smart-form-row'>
-      {r.map((f, cIdx) => createField(form, f, { ...cfOptions, colIndex: cIdx }))}
+      {r.cols.map((f, cIdx) => createField(
+        form, f, { ...cfOptions, colIndex: cIdx, isLastCol: isRowFull(r, column) && cIdx === r.cols.length - 1 }
+      ))}
     </div>
   )
 }
 
+type TRow = { cols: FieldProps[], span: number }
+const newRow: () => TRow = () => ({ cols: [], span: 0 })
+const addToRow = (row: TRow, f: FieldProps) => {
+  row.cols.push(f)
+  row.span += f.span || 1
+}
+
+function isRowFull (row: TRow, column: number) { return  row.span === column }
+
 function putFieldsInRows (fields: FieldProps[], column: number) {
-  let row = []
+  let row = newRow()
   let result = []
   for (const f of fields) {
     if (f.widget === 'object' || f.widget === 'array') {
-      row = []
-      result.push([f])
-    } else {
-      row.push(f)
-      if (row.length === column) {
+      if (row.span) { // If row is not empty
         result.push(row)
-        row = []
+      }
+
+      // 'object' or 'array' should make a single row
+      row = newRow()
+      addToRow(row, f)
+      result.push(row)
+      row = newRow()
+    } else {
+      f.span = Math.min(Math.max(f.span || 1, 1), column)
+
+      if (f.span > 1 && row.span + f.span > column) { // 处理 field.span
+        result.push(row)
+
+        row = newRow()
+        addToRow(row, f)
+      } else {
+        if (isRowFull(row, column)) { // Row is Full
+          result.push(row)
+          row = newRow()
+        }
+        addToRow(row, f)
       }
     }
   }
 
-  if (row.length) {
+  if (row.span) { // If row is not empty
     result.push(row)
-    row = []
   }
 
   return result

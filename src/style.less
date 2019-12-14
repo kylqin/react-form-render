@@ -5,12 +5,22 @@
 }
 
 .smart-form-column {
-  &.vertical {
-    padding-right: 40px;
+  padding-right: 40px;
 
-    &.last-column {
-      padding-right: 0;
+  &.last-column {
+    padding-right: 0;
+  }
+
+  &.horizontal {
+    .smart-form-form-item {
+      .ant-form-item-label {
+        width: 120px;
+      }
+      .ant-form-item-control-wrapper {
+        width: calc(100% - 120px);
+      }
     }
+
   }
 }
 

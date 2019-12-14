@@ -19,11 +19,13 @@ export interface FieldPropsBase {
 }
 
 export interface FieldProps extends FieldPropsBase {
+  span?: number
   more: Map<string, any>
   properties: FieldProps[]
 }
 
 export interface FieldPropsOptional extends Partial<FieldPropsBase> {
+  span?: number
   more?: object
   properties: FieldPropsOptional[]
 }
@@ -34,6 +36,7 @@ export function safeField (o: FieldPropsOptional) : FieldProps {
     field: o.field || '',
     title: o.title || '',
     type: o.type || 'string',
+    span: o.span,
     widget: o.widget || 'input',
     required: o.required || false,
     tooltip: o.tooltip || '',
