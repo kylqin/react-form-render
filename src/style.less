@@ -1,3 +1,19 @@
+.smart-form-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.smart-form-column {
+  &.vertical {
+    padding-right: 40px;
+
+    &.last-column {
+      padding-right: 0;
+    }
+  }
+}
+
 .smart-form-object-title, .smart-form-array-title {
   font-size: 1.2em;
 }
@@ -5,10 +21,11 @@
   border-bottom: 1px solid #DDD;
 }
 
-.smart-form-object-item, .smart-form-array-item {
-  // border: 1px solid #DDD;
-  // padding: 20px 10px;
+.smart-form-object-item {
+  width: 100%;
+  padding: 10px 20px 0;
 }
+
 .smart-form-array-item-ctn {
   position: relative;
   border: 1px solid #DDD;
@@ -27,7 +44,8 @@
   }
 
   .smart-form-array-item {
-    // padding: 20px 10px;
+    width: 100%;
+    padding: 10px 20px 0;
   }
   .smart-form-array-item-buttons {
     text-align: right;

@@ -8,7 +8,7 @@ const rate: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
     {form.getFieldDecorator(field, {
       ...fieldOptions,
     })(
-      <Rate />
+      <Rate style={{ width: '100%' }} />
     )}
   </Form.Item>
 }

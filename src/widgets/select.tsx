@@ -1,21 +1,22 @@
-import { Form, Switch } from 'antd';
-import { WidgetFuncType } from '../utils/create-field';
-import { Select } from 'antd';
+import { Form, Select } from 'antd';
 import React from 'react';
-import { FieldProps } from '../models/Field';
+import { WidgetFuncType } from '../utils/create-field';
 const { Option } = Select
 
-const select: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
+const select: WidgetFuncType = (form, p, { propsForm, fieldOptions }, cfOptions) => {
   const { field, options, more } = p
   const mode = more.get('mode')
   const placeholder = more.get('placeholder') || ''
-  const { label } = propsForm
 
-  return <Form.Item key={field} label={label} hasFeedback={false}>
+  return <Form.Item {...propsForm} key={field} hasFeedback={false}>
     {form.getFieldDecorator(field, {
       ...fieldOptions,
     })(
-      <Select mode={mode} placeholder={placeholder}>
+      <Select
+        style={{ width: '100%' }}
+        mode={mode}
+        placeholder={placeholder}
+      >
         {options.map(({ value, label}) => <Option key={value} value={value}>{label}</Option>)}
       </Select>
     )}

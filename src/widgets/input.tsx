@@ -9,7 +9,10 @@ const input: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
     {form.getFieldDecorator(field, {
       ...fieldOptions,
     })(
-      <Input placeholder={placeholder} />
+      <Input
+        style={{ width: '100%' }}
+        placeholder={placeholder}
+      />
     )}
   </Form.Item>
 }

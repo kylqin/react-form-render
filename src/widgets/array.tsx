@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { FC, MouseEvent, useState } from 'react';
 import { FieldProps } from '../models/Field';
-import { WidgetFuncType, ICreateFieldOptions, defaultICFO, createFields } from '../utils/create-field';
+import { WidgetFuncType, ICreateFieldOptions, createFields } from '../utils/create-field';
 
 import {
   SortableContainer,
@@ -29,12 +29,14 @@ const FormArrayItem: FC<IFormArrayItem> = ({form, p, idx, addItem, deleteItem, c
 
   return <div key={`${field}[${idx}]`} className='smart-form-array-item-ctn'>
     <DragHandle />
-    <div className='smart-form-array-item'>
-      {createFields(form, properties.map(ppt => ({ ...ppt, field: `${field}[${idx}].${ppt.field}` })), cfOptions)}
-    </div>
-    <div className='smart-form-array-item-buttons'>
-      <Button onClick={addItem}>新增</Button>
-      <Button onClick={deleteItem}>删除</Button>
+    <div style={{ position: 'relative' }}>
+      <div className='smart-form-array-item'>
+        {createFields(form, properties.map(ppt => ({ ...ppt, field: `${field}[${idx}].${ppt.field}` })), cfOptions)}
+      </div>
+      <div className='smart-form-array-item-buttons'>
+        <Button onClick={addItem}>新增</Button>
+        <Button onClick={deleteItem}>删除</Button>
+      </div>
     </div>
   </div>
 }
@@ -83,7 +85,7 @@ const FormArray: FC<IFormArrayProps> = ({ form, p, cfOptions }) => {
 
 export const SortableFormArray = SortableContainer(FormArray)
 
-const array: WidgetFuncType = (form, p, _, cfOptions = defaultICFO) => {
+const array: WidgetFuncType = (form, p, _, cfOptions) => {
   const handleSort = ({ oldIndex, newIndex }: { oldIndex: number, newIndex: number}) => {
     const { field } = p
     const value = form.getFieldValue(field)
@@ -92,7 +94,15 @@ const array: WidgetFuncType = (form, p, _, cfOptions = defaultICFO) => {
       [field]: arrayMove(value, oldIndex, newIndex)
     })
   }
-  return <SortableFormArray key={p.field} form={form} p={p} useDragHandle onSortEnd={handleSort} cfOptions={cfOptions} />
+  return <SortableFormArray
+    key={p.field}
+    form={form}
+    p={p}
+    distance={6}
+    useDragHandle
+    onSortEnd={handleSort}
+    cfOptions={cfOptions}
+  />
 }
 
 export default array

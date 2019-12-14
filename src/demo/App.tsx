@@ -7,7 +7,7 @@ import { fields } from './fields';
 const { Option } = Select
 
 const App: React.FC = () => {
-  const [layout, setLayout] = useState('horizontal')
+  const [layout, setLayout] = useState('vertical')
   const [column, setColumn] = useState(2)
 
   const formProps = {

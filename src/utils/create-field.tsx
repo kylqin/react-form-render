@@ -12,20 +12,22 @@ export interface WidgetMoreProps {
 }
 const wmp = { propsForm: {}, fieldOptions: {}, propsWidget: {} }
 
-export type WidgetFuncType = (form: WrappedFormUtils<any>, p: FieldProps, more: WidgetMoreProps, cfOptions?: ICreateFieldOptions) => ReactNode
+export type WidgetFuncType = (form: WrappedFormUtils<any>, p: FieldProps, more: WidgetMoreProps, cfOptions: ICreateFieldOptions) => ReactNode
 export interface ICreateFieldOptions {
   column: number
+  layout: string
+  colIndex?: number
   [p: string]: any
 }
 export const defaultICFO = { column: 1 }
-export type TCreateField = (form: WrappedFormUtils<any>, p: FieldProps, cfOptions?: ICreateFieldOptions) => ReactNode
+export type TCreateField = (form: WrappedFormUtils<any>, p: FieldProps, cfOptions: ICreateFieldOptions) => ReactNode
 
 const formObjectItem: TCreateField = (form, p, cfOptions) => {
   const { field, properties, title } = p
   return <div key={field}>
     <div className='smart-form-object-title'>{title}</div>
     <div className='smart-form-object-item'>
-      {properties.map(ppt => createField(form, { ...ppt, field: field + '.' + ppt.field}, cfOptions))}
+      {createFields(form, properties.map(ppt => ({ ...ppt, field: field + '.' + ppt.field})), cfOptions)}
     </div>
   </div>
 }
@@ -33,7 +35,7 @@ const formObjectItem: TCreateField = (form, p, cfOptions) => {
 
 export const createField: TCreateField = (form, p, cfOptions) => {
   const { field, type, properties, required, more, title, tooltip, extra, initialValue } = p
-  const { column } = cfOptions || defaultICFO
+  const { column, layout, colIndex = 0 } = cfOptions || defaultICFO
 
   if (type === 'object' && properties.length) {
     return <Col key={field} span={24}>
@@ -62,8 +64,20 @@ export const createField: TCreateField = (form, p, cfOptions) => {
     </span>
   }
 
+  const COL_GAP = 40
   const { widget } = parseField(p)
-  return <Col key={field} span={24 /column}>{
+  let colClassName = 'smart-form-column' + (layout ? ` ${layout}` : '')
+  let colWidth = '100%'
+  if (column === 1) {
+    colWidth = '100%'
+    colClassName += ' last-column'
+  } else if (colIndex === column - 1) {
+    colWidth = `calc(${100 / column}% - ${COL_GAP}px)`
+    colClassName += ' last-column'
+  } else {
+    colWidth = `calc(${100 / column}% + ${COL_GAP / (column - 1)}px)`
+  }
+  return <div key={field} className={colClassName} style={{ width: colWidth }}>{
     widget(
       form,
       p,
@@ -77,16 +91,20 @@ export const createField: TCreateField = (form, p, cfOptions) => {
           initialValue: initialValue || defaultValue(p.type)
         },
         propsWidget: {}
-      }
+      },
+      cfOptions
     )
-  }</Col>
+  }</div>
 }
 
 export type TCreateFieldS = (form: WrappedFormUtils<any>, fields: FieldProps[], cfOptions: ICreateFieldOptions) => ReactNode[]
 export const createFields: TCreateFieldS = (form, fields, cfOptions) => {
-  // return fields.map(f => createField(form, f, cfOptions))
   const rows = putFieldsInRows(fields, cfOptions.column)
-  return rows.map((r, idx) => <Row key={idx}>{r.map(f => createField(form, f, cfOptions))}</Row>)
+  return rows.map((r, idx) =>
+    <div key={idx} className='smart-form-row'>
+      {r.map((f, cIdx) => createField(form, f, { ...cfOptions, colIndex: cIdx }))}
+    </div>
+  )
 }
 
 function putFieldsInRows (fields: FieldProps[], column: number) {
