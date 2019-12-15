@@ -114,7 +114,7 @@ type TRow = { cols: FieldProps[], span: number }
 const newRow: () => TRow = () => ({ cols: [], span: 0 })
 const addToRow = (row: TRow, f: FieldProps) => {
   row.cols.push(f)
-  row.span += f.span || 1
+  row.span += f.span
 }
 
 function isRowFull (row: TRow, column: number) { return  row.span === column }
@@ -134,7 +134,7 @@ function putFieldsInRows (fields: FieldProps[], column: number) {
       result.push(row)
       row = newRow()
     } else {
-      f.span = Math.min(Math.max(f.span || 1, 1), column)
+      f.span = Math.min(Math.max(f.span, 1), column)
 
       if (f.span > 1 && row.span + f.span > column) { // 处理 field.span
         result.push(row)
