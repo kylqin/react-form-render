@@ -8,7 +8,8 @@ import { createFields } from '../utils/create-field';
 
 export interface BigFormProps {
   layout: string
-  column: number,
+  column: number
+  disabled: boolean
   fields: FieldPropsOptional[]
 }
 
@@ -24,7 +25,7 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
   };
 
   render () {
-    const { form, layout, column: _column, fields } = this.props
+    const { form, layout, column: _column, disabled, fields } = this.props
     const column = Number(_column) || 2
 
     let formProps : FormProps = {
@@ -42,9 +43,9 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
     } else {
     }
 
-    const _fields = fields.map(f => safeField(f))
-
     const cfOptions = { column, layout }
+
+    const _fields = fields.map(f => safeField(f, { disabled }))
 
     return (
       <Form {...formProps} onSubmit={this.handleSubmit}>

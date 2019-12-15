@@ -2,7 +2,7 @@ import { Form, Checkbox, Col, Row } from 'antd';
 import React from 'react';
 import { WidgetFuncType } from '../utils/create-field';
 
-const checkboxes: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
+const checkboxes: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, options, more } = p
   const colSpan = more.get('colSpan')
 
@@ -10,7 +10,7 @@ const checkboxes: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
     {form.getFieldDecorator(field, {
       ...fieldOptions
     })(
-      <Checkbox.Group style={{ width: '100%' }}>
+      <Checkbox.Group {...propsWidget} style={{ width: '100%' }}>
       {colSpan ?
         <Row>
           <div style={{ height: '11px' }} />

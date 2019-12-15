@@ -25,17 +25,17 @@ interface IFormArrayItem {
 }
 
 const FormArrayItem: FC<IFormArrayItem> = ({form, p, idx, addItem, deleteItem, cfOptions }) => {
-  const { field, properties } = p
+  const { field, properties, disabled } = p
 
   return <div key={`${field}[${idx}]`} className='smart-form-array-item-ctn'>
-    <DragHandle />
+    {!disabled && <DragHandle />}
     <div style={{ position: 'relative' }}>
       <div className='smart-form-array-item'>
         {createFields(form, properties.map(ppt => ({ ...ppt, field: `${field}[${idx}].${ppt.field}` })), cfOptions)}
       </div>
       <div className='smart-form-array-item-buttons'>
-        <Button onClick={addItem}>新增</Button>
-        <Button onClick={deleteItem}>删除</Button>
+        <Button disabled={disabled} onClick={addItem}>新增</Button>
+        <Button disabled={disabled} onClick={deleteItem}>删除</Button>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@ import { Form, InputNumber } from 'antd';
 import React from 'react';
 import { WidgetFuncType } from '../utils/create-field';
 
-const number: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
+const number: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, more } = p
   const placeholder = more.get('placeholder') || ''
   const min = more.get('min')
@@ -14,7 +14,7 @@ const number: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
       ...fieldOptions,
     })(
       <div>
-        <InputNumber placeholder={placeholder} min={min} max={max} />
+        <InputNumber {...propsWidget} placeholder={placeholder} min={min} max={max} />
         {unit && <span className="ant-form-text"> {unit}</span>}
       </div>
     )}

@@ -33,8 +33,9 @@ export interface FieldPropsOptional extends Partial<FieldPropsBase> {
   properties: FieldPropsOptional[]
 }
 
+type TSafeTypeOption = { readonly?: boolean, disabled?: boolean }
 
-export function safeField (o: FieldPropsOptional) : FieldProps {
+export function safeField (o: FieldPropsOptional, sto: TSafeTypeOption) : FieldProps {
   return {
     field: o.field || '',
     title: o.title || '',
@@ -42,15 +43,15 @@ export function safeField (o: FieldPropsOptional) : FieldProps {
     widget: o.widget || 'input',
     span: o.span || 1,
     hidden: o.hidden || false,
-    readonly: o.readonly || false,
-    disabled: o.disabled || false,
+    readonly: sto.readonly || o.readonly || false,
+    disabled: sto.disabled || o.disabled || false,
     required: o.required || false,
     tooltip: o.tooltip || '',
-    extra: o.tooltip || '',
+    extra: o.extra || '',
     options: o.options || [],
     more: o.more ? new Map(Object.entries(o.more)) : new Map(),
     initialValue: o.initialValue,
-    properties: (((o.type === 'array' || o.type === 'object') && o.properties) || []).map(safeField)
+    properties: (((o.type === 'array' || o.type === 'object') && o.properties) || []).map(f => safeField(f, sto))
   }
 }
 

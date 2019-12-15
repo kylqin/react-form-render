@@ -2,7 +2,7 @@ import { Form, Radio } from 'antd';
 import React from 'react';
 import { WidgetFuncType } from '../utils/create-field';
 
-const radio: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
+const radio: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, options } = p
 
   return <Form.Item {...propsForm} key={field} hasFeedback={false}>
@@ -10,7 +10,7 @@ const radio: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
       ...fieldOptions,
       valuePropName: 'checked'
     })(
-      <Radio.Group>
+      <Radio.Group {...propsWidget} >
         {options.map(({value, label}) => <Radio key={value} value={value}>{label}</Radio>)}
       </Radio.Group>
     )}

@@ -24,7 +24,7 @@ export const fields = [
 
   { field: 'arr01', title: 'Array', type: 'array', widget: 'array', initialValue: [{}, {}], properties: [
     { field: 'rate01', title: 'Rate', type: 'number', widget: 'rate', initialValue: 3.5, more: {} },
-    { field: 'input01', span: 2, title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra', required: true },
+    { field: 'input01', disabled: true, span: 2, title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra', required: true },
     { field: 'select02', span: 2, title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
     { field: 'select03', title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
     { field: 'input02', title: '中文', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },

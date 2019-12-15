@@ -10,21 +10,21 @@ export const defaultFormatFiles = (e: any) => {
   return e && e.fileList;
 }
 
-const upload: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
+const upload: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, more } = p
 
   const formatFiles = more.get('formatFiles') || defaultFormatFiles
   const buttonText = more.get('buttonText') || 'Click to upload'
   const action = more.get('action') || 'upload'
 
-  return <Form.Item {...propsForm} key={field} extra="longgggggggggggggggggggggggggggggggggg">
+  return <Form.Item {...propsForm} key={field}>
     {form.getFieldDecorator(field, {
       ...fieldOptions,
       valuePropName: 'fileList',
       getValueFromEvent: formatFiles,
     })(
-      <Upload name='logo' action={action} listType='picture'>
-        <Button>
+      <Upload {...propsWidget} name='logo' action={action} listType='picture'>
+        <Button disabled={propsWidget.disabled}>
           <Icon type="upload" /> {buttonText}
         </Button>
       </Upload>,

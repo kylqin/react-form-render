@@ -3,7 +3,7 @@ import React from 'react';
 import { WidgetFuncType } from '../utils/create-field';
 const { Option } = Select
 
-const select: WidgetFuncType = (form, p, { propsForm, fieldOptions }, cfOptions) => {
+const select: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }, cfOptions) => {
   const { field, options, more } = p
   const mode = more.get('mode')
   const placeholder = more.get('placeholder') || ''
@@ -13,6 +13,7 @@ const select: WidgetFuncType = (form, p, { propsForm, fieldOptions }, cfOptions)
       ...fieldOptions,
     })(
       <Select
+        {...propsWidget}
         style={{ width: '100%' }}
         mode={mode}
         placeholder={placeholder}

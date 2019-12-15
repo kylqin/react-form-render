@@ -2,7 +2,7 @@ import { Form, Slider } from 'antd';
 import React from 'react';
 import { WidgetFuncType } from '../utils/create-field';
 
-const slider: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
+const slider: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, more } = p
   const marks = more.get('marks') || {}
 
@@ -11,7 +11,7 @@ const slider: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
       ...fieldOptions,
       valuePropName: 'checked'
     })(
-      <Slider marks={marks} />
+      <Slider {...propsWidget} marks={marks} />
     )}
   </Form.Item>
 }

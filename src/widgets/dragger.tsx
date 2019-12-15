@@ -4,7 +4,7 @@ import { WidgetFuncType } from '../utils/create-field';
 import { defaultFormatFiles } from './upload'
 
 
-const dragger: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
+const dragger: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, more } = p
 
   const formatFiles = more.get('formatFiles') || defaultFormatFiles
@@ -12,12 +12,12 @@ const dragger: WidgetFuncType = (form, p, { propsForm, fieldOptions }) => {
   const uploadHint = more.get('uploadHint') || 'Support for a single or bulk upload.'
   const action = more.get('action') || 'upload'
 
-  return <Form.Item {...propsForm} key={field} extra="longgggggggggggggggggggggggggggggggggg">
+  return <Form.Item {...propsForm} key={field}>
     {form.getFieldDecorator(field, {
       valuePropName: 'fileList',
       getValueFromEvent: formatFiles,
     })(
-      <Upload.Dragger name="files" action={action}>
+      <Upload.Dragger {...propsWidget} name="files" action={action}>
         <p className="ant-upload-drag-icon">
           <Icon type="inbox" />
         </p>

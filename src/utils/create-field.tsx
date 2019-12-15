@@ -35,7 +35,7 @@ const formObjectItem: TCreateField = (form, p, cfOptions) => {
 
 
 export const createField: TCreateField = (form, p, cfOptions) => {
-  const { field, type, span = 1, properties, required, more, title, tooltip, extra, initialValue } = p
+  const { field, type, span = 1, properties, required, disabled, more, title, tooltip, extra, initialValue } = p
   const { column, layout, colIndex = 0, isLastCol = false } = cfOptions || defaultICFO
 
   if (type === 'object' && properties.length) {
@@ -90,7 +90,9 @@ export const createField: TCreateField = (form, p, cfOptions) => {
           rules,
           initialValue: initialValue || defaultValue(p.type)
         },
-        propsWidget: {}
+        propsWidget: {
+          disabled
+        }
       },
       cfOptions
     )
