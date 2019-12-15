@@ -12,6 +12,9 @@ export interface FieldPropsBase {
   type: FieldType
   widget: string
   span: number
+  hidden: boolean
+  readonly: boolean
+  disabled: boolean
   required: boolean
   tooltip: string
   extra: string
@@ -36,8 +39,11 @@ export function safeField (o: FieldPropsOptional) : FieldProps {
     field: o.field || '',
     title: o.title || '',
     type: o.type || 'string',
-    span: o.span || 1,
     widget: o.widget || 'input',
+    span: o.span || 1,
+    hidden: o.hidden || false,
+    readonly: o.readonly || false,
+    disabled: o.disabled || false,
     required: o.required || false,
     tooltip: o.tooltip || '',
     extra: o.tooltip || '',

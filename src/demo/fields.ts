@@ -10,7 +10,7 @@ const CD = {
 export const fields = [
   { field: 'text01', title: '文本', type: 'string', widget: 'text', initialValue: 'Helo Lom' },
 
-  { field: 'input01', title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
+  { field: 'input01', hidden: true, title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
   { field: 'input02', span: 2, title: 'Input tootip', type: 'string', widget: 'input', tooltip: '这就是传说中的Tooltip!' },
 
   { field: 'number01', title: 'Number', type: 'number', widget: 'number', more: { unit: '吨'} },

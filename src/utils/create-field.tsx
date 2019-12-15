@@ -123,7 +123,10 @@ function putFieldsInRows (fields: FieldProps[], column: number) {
   let row = newRow()
   let result = []
   for (const f of fields) {
-    if (f.widget === 'object' || f.widget === 'array') {
+    if (f.hidden) {
+      // 跳过影藏的 field
+      continue
+    } else if (f.widget === 'object' || f.widget === 'array') {
       if (row.span) { // If row is not empty
         result.push(row)
       }
