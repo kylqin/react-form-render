@@ -8,7 +8,7 @@ export interface SelectOption {
   label: string
 }
 
-type TComputedFieldPropF<T> = (form: WrappedFormUtils<any>) => T
+type TComputedFieldPropF<T> = (form: WrappedFormUtils<any>, idx: number) => T
 type TComputedFieldProp<T> = TComputedFieldPropF<T> | [string[], (...args: any[]) => T]
 
 type ToComputed<T> = {
@@ -108,12 +108,12 @@ function computedProps (o: FieldPropsOptional, form: WrappedFormUtils<any>): Fie
   return computed
 }
 
-function computedValue<T> (cmp: TComputedFieldProp<T>, form: WrappedFormUtils<any>): T {
+export function computedValue<T> (cmp: TComputedFieldProp<T>, form: WrappedFormUtils<any>, idx: number = -1): T {
   if (typeof cmp === 'function') {
-    return cmp(form)
+    return cmp(form, idx)
   } else {
     const [args, c] = cmp
-    const params = args.map((a: string) => form.getFieldsValue([a])[a])
+    const params = args.map((a: string) => form.getFieldsValue([a])[a]).concat(idx)
     return c.apply(null, params)
   }
 }

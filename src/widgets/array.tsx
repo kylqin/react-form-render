@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { FC, MouseEvent, useState } from 'react';
-import { FieldProps } from '../models/Field';
+import { FieldProps, computedValue, FieldPropsBase } from '../models/Field';
 import { WidgetFuncType, ICreateFieldOptions, createFields } from '../utils/create-field';
 
 import {
@@ -27,11 +27,20 @@ interface IFormArrayItem {
 const FormArrayItem: FC<IFormArrayItem> = ({form, p, idx, addItem, deleteItem, cfOptions }) => {
   const { field, properties, disabled } = p
 
+  const computedProperties = properties.map((ppt: FieldProps) => {
+    const { compute } = ppt
+    let result: any = { ...ppt, field: `${field}[${idx}].${ppt.field}` }
+    for (const [fd, cmp] of Object.entries(compute)) {
+      result[fd] = computedValue(cmp!, form, idx)
+    }
+    return result as FieldProps
+  })
+
   return <div key={`${field}[${idx}]`} className='smart-form-array-item-ctn'>
     {!disabled && <DragHandle />}
     <div style={{ position: 'relative' }}>
       <div className='smart-form-array-item'>
-        {createFields(form, properties.map(ppt => ({ ...ppt, field: `${field}[${idx}].${ppt.field}` })), cfOptions)}
+        {createFields(form, computedProperties, cfOptions)}
       </div>
       <div className='smart-form-array-item-buttons'>
         <Button disabled={disabled} onClick={addItem}>新增</Button>

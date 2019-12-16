@@ -15,6 +15,10 @@ export interface BigFormProps {
 
 
 class BigForm extends React.Component<BigFormProps & FormComponentProps> {
+  componentDidMount () {
+    this.forceUpdate()
+  }
+
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.props.form.validateFields((err: Error, values: any[]) => {
@@ -47,6 +51,8 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
 
     const _fields = fields.map(f => safeField(f, { disabled, form }))
 
+    console.log('_fields ->', _fields)
+
     return (
       <Form {...formProps} onSubmit={this.handleSubmit}>
         <Row>
@@ -63,11 +69,11 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
   }
 }
 
-const onValuesChange = (props: any, changedFields: any, allFields: any) => {
-  console.log('onValuesChange', props, changedFields, allFields)
+const onFieldsChange = (props: any, changedFields: any, allFields: any) => {
+  console.log('onFieldsChange', props, changedFields, allFields)
 }
 
-const Wrapped = Form.create({ name: 'validate_other', onValuesChange  })(BigForm);
+const Wrapped = Form.create({ name: 'validate_other', onFieldsChange  })(BigForm);
 
 export default Wrapped
 
