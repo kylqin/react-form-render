@@ -2,6 +2,7 @@ import { Select, Switch } from 'antd';
 import React, { useState } from 'react';
 import './App.css';
 import BigForm from './BigForm';
+import { injectFieldProps } from '../utils/inject-field-props'
 import { fields } from './fields';
 
 const { Option } = Select
@@ -12,7 +13,15 @@ const App: React.FC = () => {
   const [disabled, setDisabled] = useState(false)
 
   const formProps = {
-    fields,
+    fields: injectFieldProps(
+      fields,
+      { 'switch01:title': '注入的Title' },
+      {
+        'ops-ABC': [{ value: 'a', label: 'A' }, { value: 'b', label: 'B' }],
+        'obj01.input02:title': '注入的Title 哈哈',
+        'arr01[].input02:extra': '这是一个注入的EXTRA~'
+      }
+    ),
     layout,
     column,
     disabled

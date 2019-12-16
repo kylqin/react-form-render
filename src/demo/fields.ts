@@ -17,7 +17,7 @@ export const fields = [
 
   { field: 'obj01', title: 'Object', type: 'object', widget: 'object', properties: [
     { field: 'input01', title: 'Input', type: 'string', widget: 'input', 'c:extra': (form: any) => form.getFieldValue('obj01.input02') },
-    { field: 'input02', span: 3, title: 'Input tootip', type: 'string', widget: 'input', 'c:tooltip': (form: any) => form.getFieldValue('obj01.input01') },
+    { field: 'input02', span: 3, 'ij:title': '', type: 'string', widget: 'input', 'c:tooltip': (form: any) => form.getFieldValue('obj01.input01') },
 
     { field: 'number01', title: 'Number', type: 'number', widget: 'number', more: { unit: '吨'} },
   ] },
@@ -34,18 +34,18 @@ export const fields = [
     title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra', required: true },
     { field: 'select02', span: 2, title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
     { field: 'select03', title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
-    { field: 'input02', title: '中文', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
+    { field: 'input02', title: '中文', type: 'string', widget: 'input', 'ij:extra': ''  },
   ] },
 
   { field: 'select01', title: '选择', type: 'string', widget: 'select', 'c:options': [['switch01'], (sw01: string) => sw01 ? CO.country : CO.abc] },
   { field: 'select02', title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
   { field: 'select03', title: '选择(多选)', type: 'array', widget: 'select', options: CO.country, more: { mode: 'multiple' }, initialValue: ['china'] },
 
-  { field: 'switch01', title: 'Switch', type: 'boolean', widget: 'switch'  },
+  { field: 'switch01', 'ij:title': '', type: 'boolean', widget: 'switch'  },
 
   { field: 'slider01', title: 'Slider', type: 'number', widget: 'slider', more: { marks: CD.marks } },
 
-  { field: 'radio01', title: 'Radio', type: 'string', widget: 'radio', options: CO.abc, more: {} },
+  { field: 'radio01', title: 'Radio', type: 'string', widget: 'radio', 'ij:options': 'ops-ABC', more: {} },
   { field: 'radio02', title: 'Radio Button', type: 'string', widget: 'radio-button', options: CO.abc, more: {} },
 
   { field: 'checkbox01', title: 'Checkboxes', type: 'array', widget: 'checkboxes', options: CO.abc, initialValue: ['a', 'b'], more: {} },
