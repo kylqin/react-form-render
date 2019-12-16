@@ -1,7 +1,7 @@
+import { Select, Switch } from 'antd';
 import React, { useState } from 'react';
-import { Select, Button, Switch } from 'antd'
 import './App.css';
-import BigForm from './BigForm'
+import BigForm from './BigForm';
 import { fields } from './fields';
 
 const { Option } = Select
@@ -16,10 +16,6 @@ const App: React.FC = () => {
     layout,
     column,
     disabled
-  }
-
-  const addItem = () => {
-    // setFields()
   }
 
   return (

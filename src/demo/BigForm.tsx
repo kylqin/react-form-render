@@ -45,7 +45,7 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
 
     const cfOptions = { column, layout }
 
-    const _fields = fields.map(f => safeField(f, { disabled }))
+    const _fields = fields.map(f => safeField(f, { disabled, form }))
 
     return (
       <Form {...formProps} onSubmit={this.handleSubmit}>

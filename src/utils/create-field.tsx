@@ -1,9 +1,9 @@
-import { Form, Icon, Tooltip, Button, Col, Row } from 'antd';
+import { Col, Icon, Tooltip } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
-import React, { ReactNode, useState, FC, MouseEvent } from 'react';
+import React, { ReactNode } from 'react';
 import { defaultValue, FieldProps } from '../models/Field';
+import array_ from '../widgets/array';
 import { parseField } from './parse-field';
-import array_ from '../widgets/array'
 
 export interface WidgetMoreProps {
   propsForm: any
@@ -36,7 +36,7 @@ const formObjectItem: TCreateField = (form, p, cfOptions) => {
 
 export const createField: TCreateField = (form, p, cfOptions) => {
   const { field, type, span = 1, properties, required, disabled, more, title, tooltip, extra, initialValue } = p
-  const { column, layout, colIndex = 0, isLastCol = false } = cfOptions || defaultICFO
+  const { column, layout, isLastCol = false } = cfOptions || defaultICFO
 
   if (type === 'object' && properties.length) {
     return <Col key={field} span={24}>

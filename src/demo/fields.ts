@@ -13,7 +13,7 @@ export const fields = [
   { field: 'input01', hidden: true, title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
   { field: 'input02', span: 2, title: 'Input tootip', type: 'string', widget: 'input', tooltip: '这就是传说中的Tooltip!' },
 
-  { field: 'number01', title: 'Number', type: 'number', widget: 'number', more: { unit: '吨'} },
+  { field: 'number01', title: 'Number', 'c:title': [['input02'], (i02: string) => i02], type: 'number', widget: 'number', more: { unit: '吨'} },
 
   { field: 'obj01', title: 'Object', type: 'object', widget: 'object', properties: [
     { field: 'input01', title: 'Input', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
@@ -30,7 +30,7 @@ export const fields = [
     { field: 'input02', title: '中文', type: 'string', widget: 'input', extra: '看起来这是一个Extra'  },
   ] },
 
-  { field: 'select01', title: '选择', type: 'string', widget: 'select', options: CO.country },
+  { field: 'select01', title: '选择', type: 'string', widget: 'select', 'c:options': [['switch01'], (sw01: string) => sw01 ? CO.country : CO.abc] },
   { field: 'select02', title: '选择(必填)', type: 'string', widget: 'select', options: CO.country, required: true },
   { field: 'select03', title: '选择(多选)', type: 'array', widget: 'select', options: CO.country, more: { mode: 'multiple' }, initialValue: ['china'] },
 
@@ -55,7 +55,7 @@ export const fields = [
       if (Array.isArray(e)) {
         return e.filter(f => !f.error);
       }
-      return (e && e.fileList || []).filter((f: any) => !f.error);
+      return ((e && e.fileList) || []).filter((f: any) => !f.error);
     }
   } },
 
