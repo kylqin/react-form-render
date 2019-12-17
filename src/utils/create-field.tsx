@@ -72,9 +72,9 @@ export const createField: TCreateField = (form, p, cfOptions) => {
   if (column === 1) {
     colWidth = '100%'
   } else if (isLastCol) {
-    colWidth = `calc(${100 / column * span}% + ${COL_GAP / (column - 1) * (span - 1) - COL_GAP}px)`
+    colWidth = `calc(${100 / column * span}% + ${COL_GAP / column * span - COL_GAP}px)`
   } else {
-    colWidth = `calc(${100 / column * span}% + ${COL_GAP / (column - 1) * span}px)`
+    colWidth = `calc(${100 / column * span}% + ${COL_GAP / column * span}px)`
   }
   return <div key={field} className={colClassName} style={{ width: colWidth }}>{
     widget(
