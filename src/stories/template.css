@@ -1,0 +1,18 @@
+
+.App {
+  /* width: 1000px; */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.form-container {
+  margin: 20px 0 0 0;
+}
+
+.settings-label {
+  margin: 0 8px 0 20px;
+}
+.settings-label:first-child {
+  margin: 0 8px 0 0;
+}

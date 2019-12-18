@@ -2,11 +2,11 @@ import { Button, Form, Row } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { FormLayout, FormProps } from 'antd/lib/form/Form';
 import React, { FormEvent } from 'react';
-import { FieldPropsOptional, safeField } from '../models/Field';
-import { createFields } from '../utils/create-field';
+import { FieldPropsOptional, safeField } from './models/Field';
+import { createFields } from './utils/create-field';
 
 
-export interface BigFormProps {
+export interface IReactFormRenderProps {
   layout: string
   column: number
   disabled: boolean
@@ -14,7 +14,7 @@ export interface BigFormProps {
 }
 
 
-class BigForm extends React.Component<BigFormProps & FormComponentProps> {
+class ReactFormRender extends React.Component<IReactFormRenderProps & FormComponentProps> {
   componentDidMount () {
     this.forceUpdate()
   }
@@ -68,10 +68,10 @@ class BigForm extends React.Component<BigFormProps & FormComponentProps> {
 }
 
 const onFieldsChange = (props: any, changedFields: any, allFields: any) => {
-  console.log('onFieldsChange', props, changedFields, allFields)
+  console.log('onFieldsChange ->', props, changedFields, allFields)
 }
 
-const Wrapped = Form.create({ name: 'validate_other', onFieldsChange  })(BigForm);
+const Wrapped = Form.create({ name: 'validate_other', onFieldsChange  })(ReactFormRender)
 
 export default Wrapped
 

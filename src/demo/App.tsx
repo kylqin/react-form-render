@@ -1,7 +1,7 @@
 import { Select, Switch } from 'antd';
 import React, { useState } from 'react';
 import './App.css';
-import BigForm from './BigForm';
+import ReactFromRender from '../react-form-render';
 import { injectFieldProps } from '../utils/inject-field-props'
 import { fields } from './fields';
 
@@ -49,7 +49,7 @@ const App: React.FC = () => {
 
 
       <div className='form-container'>
-        <BigForm {...formProps} />
+        <ReactFromRender {...formProps} />
       </div>
     </div>
   );

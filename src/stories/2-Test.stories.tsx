@@ -2,7 +2,7 @@ import Template from './template'
 
 import React from 'react'
 import { injectFieldProps } from '../utils/inject-field-props'
-import BigForm from '../demo/BigForm'
+import ReactFromRender from '../react-form-render'
 import { fields } from '../demo/fields'
 
 export default {
@@ -24,6 +24,6 @@ export const App: React.FC = () => {
   }
 
   return <Template
-    configForm={cfg => <BigForm {...formProps} {...cfg} />}
+    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
   />
 }
