@@ -8,7 +8,7 @@ const select: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget 
   const mode = more.get('mode')
   const placeholder = more.get('placeholder') || ''
 
-  return <Form.Item {...propsForm} key={field} hasFeedback={false}>
+  return <Form.Item {...propsForm} key={field} hasFeedback>
     {form.getFieldDecorator(field, {
       ...fieldOptions,
     })(
