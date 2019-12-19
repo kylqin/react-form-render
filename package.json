@@ -28,6 +28,7 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "storybook": "start-storybook -p 9009 -s public",
+    "deploy-storybook": "storybook-to-ghpages",
     "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
@@ -51,6 +52,7 @@
     "@storybook/addons": "^5.2.8",
     "@storybook/preset-create-react-app": "^1.5.0",
     "@storybook/react": "^5.2.8",
+    "@storybook/storybook-deployer": "^2.8.1",
     "awesome-typescript-loader": "^5.2.1",
     "ts-import-plugin": "^1.6.2"
   }
