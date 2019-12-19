@@ -1,16 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React-Form-Render
+---
 
-## Available Scripts
+Render forms from JavaScript-object schemas. Written based on Ant Design Form with TypeScript, React.
+
+## Install
+
+## Documents
+
+## Development
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn storybook`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Runs the app in the development mode with storybook.<br />
 
 ### `yarn test`
 
@@ -27,18 +30,12 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Similar Projects
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [githbu.com/alibaba/form-reander](https://github.com/alibaba/form-render)
+跨组件体系的表单渲染引擎 - 通过 JSON Schema 快速生成自定义表单配置界面
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Ant.Design Form](https://ant.design/components/form/)
