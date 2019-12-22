@@ -1,6 +1,6 @@
 import { WrappedFormUtils } from "antd/lib/form/Form"
 
-// export type FieldType = 'string' | 'number' | 'boolean' | 'date' | 'time' | 'datetime' | 'array' | 'object' | string
+// export type WidgetType = 'string' | 'number' | 'boolean' | 'date' | 'time' | 'datetime' | 'date-range' | 'time-range' | 'datetime-range' | 'array' | 'object' | string
 export type FieldType = string
 
 export interface SelectOption {
@@ -129,7 +129,9 @@ export function defaultValue(ft: FieldType): any {
     case 'date':
     case 'time':
     case 'datetime':
-      return ''
+    case 'month':
+    case 'week':
+      return undefined
     case 'array':
       return []
     case 'object':

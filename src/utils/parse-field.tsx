@@ -13,6 +13,14 @@ import switch_ from '../widgets/switch';
 import text from '../widgets/text';
 import upload from '../widgets/upload';
 import { WidgetFuncType } from './create-field';
+import date from '../widgets/date'
+import dateRange from '../widgets/date-range'
+import datetime from '../widgets/datetime'
+import datetimeRange from '../widgets/datetime-range'
+import time from '../widgets/time'
+import month from '../widgets/month'
+import monthRange from '../widgets/month-range'
+import week from '../widgets/week'
 
 
 const widgets: { [widgetName: string]: WidgetFuncType } = {
@@ -28,7 +36,15 @@ const widgets: { [widgetName: string]: WidgetFuncType } = {
   checkboxes,
   rate,
   upload,
-  dragger
+  dragger,
+  date,
+  'date-range': dateRange,
+  datetime,
+  'datetime-range': datetimeRange,
+  time,
+  month,
+  'month-range': monthRange,
+  week
 }
 
 export function parseField(p: FieldProps) : { widget: WidgetFuncType, props: any } {

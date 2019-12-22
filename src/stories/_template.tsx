@@ -5,13 +5,16 @@ import './_template.css'
 const { Option } = Select
 
 type TTemplateProps = {
+  layout?: string
+  column?: number
+  disabled?: boolean
   configForm: (cfg: { layout: string, column: number, disabled: boolean }) => ReactNode
 }
 
 const Template: React.FC<TTemplateProps> = (props) => {
-  const [layout, setLayout] = useState('horizontal')
-  const [column, setColumn] = useState(3)
-  const [disabled, setDisabled] = useState(false)
+  const [layout, setLayout] = useState(props.layout || 'horizontal')
+  const [column, setColumn] = useState(props.column || 3)
+  const [disabled, setDisabled] = useState(props.disabled || false)
 
   const { configForm } = props
 
