@@ -6,7 +6,7 @@ import ReactFromRender from '../react-form-render'
 import { fields } from '../demo/fields'
 
 export default {
-  title: 'All'
+  title: 'Examples'
 };
 
 

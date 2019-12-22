@@ -1,10 +1,22 @@
 import { Form, Input } from 'antd';
 import React from 'react';
+import { fromMore } from '../utils'
 import { WidgetFuncType } from '../utils/create-field';
 
 const input: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, more } = p
-  const placeholder = more.get('placeholder') || ''
+  const morePropsWidget = fromMore(more, [
+    'type',
+    'placeholder',
+    'prefix',
+    'suffix',
+    'addonBefore',
+    'addonAfter',
+    'maxLength',
+    'allowClear',
+    'onPressEnter',
+  ])
+
   return <Form.Item {...propsForm} key={field} hasFeedback>
     {form.getFieldDecorator(field, {
       ...fieldOptions,
@@ -12,7 +24,7 @@ const input: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }
       <Input
         {...propsWidget}
         style={{ width: '100%' }}
-        placeholder={placeholder}
+        {...morePropsWidget}
       />
     )}
   </Form.Item>

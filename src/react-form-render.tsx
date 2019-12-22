@@ -5,6 +5,8 @@ import React, { FormEvent } from 'react';
 import { FieldPropsOptional, safeField } from './models/Field';
 import { createFields } from './utils/create-field';
 
+import './style.less'
+
 
 export interface IReactFormRenderProps {
   layout: string
