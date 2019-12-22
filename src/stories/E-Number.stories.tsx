@@ -1,16 +1,23 @@
 import React from 'react'
 import ReactFromRender from '../react-form-render'
-import { injectFieldProps } from '../utils/inject-field-props'
-import { fgen } from './helpers'
-import Template from './template'
+import { fgen } from './_helpers'
+import Template from './_template'
 
 const f = () => fgen('_input')
 
 const fields = [
   { field: f(), title: 'N', type: 'number', widget: 'number' },
   { field: f(), title: 'N audoFocus', type: 'number', widget: 'number', more: { autoFocus: true } },
-  { field: f(), title: 'N formatter & parser', type: 'number', widget: 'number', more: { formatter: (v: number) => '-' + v} },
-  { field: f(), title: 'N parser', type: 'number', widget: 'number', more: { parser: (s: string) => Math.pow(Number(s), 2) } },
+  { field: f(), title: 'N formatter & parser', type: 'number', widget: 'number', more: {
+      formatter: (value: number) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+      parser: (value: string) => value.replace(/\$\s?|(,*)/g, '')
+    }
+  },
+  { field: f(), title: 'N formatter & parser', type: 'number', widget: 'number', more: {
+      formatter: (value: number) => `${value}%`,
+      parser: (value: string) => value.replace('%', '')
+    }
+  },
   { field: f(), title: 'N max 10', type: 'number', widget: 'number', more: { max: 10 } },
   { field: f(), title: 'N min -3', type: 'number', widget: 'number', more: { min: -3 } },
   { field: f(), title: 'N precision 2', type: 'number', widget: 'number', more: { precision: 2 } },
@@ -32,15 +39,7 @@ export default {
 
 export const Numbers: React.FC = () => {
   const formProps = {
-    fields: injectFieldProps(
-      fields,
-      { 'switch01:title': '注入的Title' },
-      {
-        'ops-ABC': [{ value: 'a', label: 'A' }, { value: 'b', label: 'B' }],
-        'obj01.input02:title': '注入的Title 哈哈',
-        'arr01[].input02:extra': '这是一个注入的EXTRA~'
-      }
-    )
+    fields
   }
 
   return <Template

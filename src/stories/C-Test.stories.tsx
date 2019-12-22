@@ -1,4 +1,4 @@
-import Template from './template'
+import Template from './_template'
 
 import React from 'react'
 import { injectFieldProps } from '../utils/inject-field-props'

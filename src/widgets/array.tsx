@@ -1,18 +1,13 @@
-import { Button } from 'antd';
+import { Button, Icon } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { FC, MouseEvent, useState } from 'react';
-import { FieldProps, computedValue, FieldPropsBase } from '../models/Field';
-import { WidgetFuncType, ICreateFieldOptions, createFields } from '../utils/create-field';
+import { arrayMove, SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
+import { computedValue, FieldProps } from '../models/Field';
+import { createFields, ICreateFieldOptions, WidgetFuncType } from '../utils/create-field';
 
-import {
-  SortableContainer,
-  SortableHandle,
-  SortableElement,
-  arrayMove,
-} from 'react-sortable-hoc'
 
 const DragHandle = SortableHandle(() => (
-  <span className="mover">:::</span>
+  <span className="mover">⋮⋮</span>
 ))
 
 interface IFormArrayItem {
@@ -43,8 +38,8 @@ const FormArrayItem: FC<IFormArrayItem> = ({form, p, idx, addItem, deleteItem, c
         {createFields(form, computedProperties, cfOptions)}
       </div>
       <div className='smart-form-array-item-buttons'>
-        <Button disabled={disabled} onClick={addItem}>新增</Button>
-        <Button disabled={disabled} onClick={deleteItem}>删除</Button>
+        {/* <Button disabled={disabled} onClick={addItem}>新增</Button> */}
+        <Button disabled={disabled} size='small' type='danger' shape='circle' onClick={deleteItem}><Icon type='minus' /></Button>
       </div>
     </div>
   </div>
@@ -56,7 +51,7 @@ interface IFormArrayProps { form: WrappedFormUtils<any>, p: FieldProps, cfOption
 
 const newId = (idx?: number) : string => new Date().valueOf() + '' + (idx || '')
 const FormArray: FC<IFormArrayProps> = ({ form, p, cfOptions }) => {
-    const { field, title, initialValue } = p
+    const { field, title, initialValue, disabled } = p
     const [itemIds, setItemIds] = useState(
       (new Array((initialValue || []).length))
         .fill(null)
@@ -89,12 +84,14 @@ const FormArray: FC<IFormArrayProps> = ({ form, p, cfOptions }) => {
           deleteItem={deleteItem.bind(null, id)}
           cfOptions={cfOptions}
         />)}
+      <Button disabled={disabled} type='dashed' onClick={addItem} style={{ width: '100%' }}><Icon type='plus' /></Button>
     </div>
 }
 
 export const SortableFormArray = SortableContainer(FormArray)
 
 const array: WidgetFuncType = (form, p, _, cfOptions) => {
+  const { field } = p
   const handleSort = ({ oldIndex, newIndex }: { oldIndex: number, newIndex: number}) => {
     const { field } = p
     const value = form.getFieldValue(field)
@@ -104,7 +101,7 @@ const array: WidgetFuncType = (form, p, _, cfOptions) => {
     })
   }
   return <SortableFormArray
-    key={p.field}
+    key={field}
     form={form}
     p={p}
     distance={6}

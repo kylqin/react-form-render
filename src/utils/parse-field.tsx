@@ -1,4 +1,5 @@
 import { FieldProps } from '../models/Field';
+import empty from '../widgets/empty'
 import checkboxes from '../widgets/checkboxes';
 import dragger from '../widgets/dragger';
 import input from '../widgets/input';
@@ -15,6 +16,7 @@ import { WidgetFuncType } from './create-field';
 
 
 const widgets: { [widgetName: string]: WidgetFuncType } = {
+  empty,
   text,
   input,
   number,

@@ -1,6 +1,6 @@
 import { Select, Switch, Radio } from 'antd'
 import React, { useState, ReactNode } from 'react'
-import './template.css'
+import './_template.css'
 
 const { Option } = Select
 
