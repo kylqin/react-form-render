@@ -12,6 +12,7 @@ const options = [
 ]
 
 const fields = [
+  { field: f(), title: 'Checkbox', type: 'boolean', widget: 'checkbox', more: { label: 'Checkbox' } },
   { field: f(), title: 'Checkboxes', type: 'array', widget: 'checkboxes', options },
   { field: f(), title: 'Disabled items', type: 'array', widget: 'checkboxes', options: options, more: { disabled: ['a', 'b'] } },
   { field: f(), title: 'InitialValue', type: 'array', widget: 'checkboxes', options: options, initialValue: ['a', 'c'] },

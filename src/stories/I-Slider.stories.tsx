@@ -46,12 +46,12 @@ const fields = [
     { field: f(), title: 'left', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'left' } },
     { field: f(), widget: 'empty' },
     { field: f(), title: 'right', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'right' } },
-    { field: f(), title: 'bottomLeft', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'bottomLeft' } },
-    { field: f(), widget: 'empty' },
-    { field: f(), title: 'bottomRight', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'bottomRight' } },
     { field: f(), title: 'leftBottom', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'leftBottom' } },
-    { field: f(), title: 'bottom', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'bottom' } },
+    { field: f(), widget: 'empty' },
     { field: f(), title: 'rightBottom', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'rightBottom' } },
+    { field: f(), title: 'bottomLeft', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'bottomLeft' } },
+    { field: f(), title: 'bottom', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'bottom' } },
+    { field: f(), title: 'bottomRight', type: 'number', widget: 'slider', initialValue: 50, more: { tooltipVisible: true, tooltipPlacement: 'bottomRight' } },
   ]},
 ]
 

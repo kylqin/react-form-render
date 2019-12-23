@@ -1,3 +1,11 @@
 .switch-classname.ant-switch-checked {
   background: red;
 }
+
+.time-classname input {
+  background: #CEC;
+}
+
+.time-popup-classname {
+  color: #38E;
+}

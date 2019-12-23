@@ -1,26 +1,46 @@
-import { Form, DatePicker } from 'antd';
+import { Form, TimePicker } from 'antd';
 import React from 'react';
 import { fromMore } from '../utils'
 import { WidgetFuncType } from '../utils/create-field';
-import { datePickerCommonProps, datePickerProps } from './date'
 
 const input: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget }) => {
   const { field, more } = p
-  const morePropsWidget = fromMore(more, datePickerCommonProps.concat(datePickerProps))
-
-  console.log('morePropsWidget ->', morePropsWidget)
-  console.log('fieldOptions ->', fieldOptions)
+  const morePropsWidget = fromMore(more, [
+    'addon',
+    'allowClear',
+    'autoFocus',
+    'className',
+    'clearText',
+    'defaultOpenValue',
+    // 'defaultValue',
+    // 'disabled',
+    'disabledHours',
+    'disabledMinutes',
+    'disabledSeconds',
+    'format',
+    'getPopupContainer',
+    'hideDisabledOptions',
+    'hourStep',
+    'inputReadOnly',
+    'minuteStep',
+    // 'open',
+    'placeholder',
+    'popupClassName',
+    'popupStyle',
+    'secondStep',
+    'suffixIcon',
+    'clearIcon',
+    'use12Hours',
+    // 'value',
+    'onChange',
+    'onOpenChange',
+  ])
 
   return <Form.Item {...propsForm} key={field} hasFeedback>
     {form.getFieldDecorator(field, {
       ...fieldOptions,
     })(
-      <DatePicker
-        {...propsWidget}
-        {...morePropsWidget}
-        mode='time'
-        showTime={true}
-        style={{ width: '100%' }}
+      <TimePicker {...propsWidget} {...morePropsWidget} style={{ width: '100%' }}
       />
     )}
   </Form.Item>

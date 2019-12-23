@@ -26,7 +26,6 @@ const checkboxes: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWid
         </Row> :
         options.map(o => <Checkbox key={o.value} value={o.value} disabled={o.value in disabledItems}>{o.label}</Checkbox>)
       }
-
     </Checkbox.Group>
     )}
   </Form.Item>

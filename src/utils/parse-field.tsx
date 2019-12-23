@@ -1,6 +1,7 @@
 import { FieldProps } from '../models/Field';
 import empty from '../widgets/empty'
 import checkboxes from '../widgets/checkboxes';
+import checkbox from '../widgets/checkbox';
 import dragger from '../widgets/dragger';
 import input from '../widgets/input';
 import number from '../widgets/number';
@@ -21,6 +22,7 @@ import time from '../widgets/time'
 import month from '../widgets/month'
 import monthRange from '../widgets/month-range'
 import week from '../widgets/week'
+import cascader from '../widgets/cascader'
 
 
 const widgets: { [widgetName: string]: WidgetFuncType } = {
@@ -34,6 +36,7 @@ const widgets: { [widgetName: string]: WidgetFuncType } = {
   radio,
   'radio-button': radioButton,
   checkboxes,
+  checkbox,
   rate,
   upload,
   dragger,
@@ -44,7 +47,8 @@ const widgets: { [widgetName: string]: WidgetFuncType } = {
   time,
   month,
   'month-range': monthRange,
-  week
+  week,
+  cascader
 }
 
 export function parseField(p: FieldProps) : { widget: WidgetFuncType, props: any } {
