@@ -23,6 +23,7 @@ import month from '../widgets/month'
 import monthRange from '../widgets/month-range'
 import week from '../widgets/week'
 import cascader from '../widgets/cascader'
+import treeSelect from '../widgets/treeSelect'
 
 
 const widgets: { [widgetName: string]: WidgetFuncType } = {
@@ -31,6 +32,8 @@ const widgets: { [widgetName: string]: WidgetFuncType } = {
   input,
   number,
   select,
+  cascader,
+  tree: treeSelect,
   switch: switch_,
   slider,
   radio,
@@ -48,7 +51,6 @@ const widgets: { [widgetName: string]: WidgetFuncType } = {
   month,
   'month-range': monthRange,
   week,
-  cascader
 }
 
 export function parseField(p: FieldProps) : { widget: WidgetFuncType, props: any } {
