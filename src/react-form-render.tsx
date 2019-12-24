@@ -59,7 +59,7 @@ class ReactFormRender extends React.Component<IReactFormRenderProps & FormCompon
           {createFields(form, _fields, cfOptions)}
         </Row>
 
-        <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>

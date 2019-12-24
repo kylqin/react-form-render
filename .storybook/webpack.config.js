@@ -4,14 +4,30 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        options: {
-          getCustomTransformers: () => ({
-            before: [tsImportPluginFactory({ libraryName: 'antd', libraryDirectory: 'lib', style: true })]
-          }),
-        },
+        test: /\.stories\.tsx$/,
+        loaders: [
+          {
+            loader: require.resolve('@storybook/source-loader'),
+            options: {
+              parser: 'typescript'
+            }
+          }
+        ],
         exclude: /node_modules/
+      },
+      {
+        test: /\.tsx?$/,
+        loaders: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              getCustomTransformers: () => ({
+                before: [tsImportPluginFactory({ libraryName: 'antd', libraryDirectory: 'lib', style: true })]
+              }),
+            },
+          },
+        ],
+        exclude: /node_modules|stories/
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
