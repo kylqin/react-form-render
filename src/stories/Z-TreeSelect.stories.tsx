@@ -4,7 +4,7 @@ import { fgen } from './_helpers'
 import Template from './_template'
 import './_classname.css'
 
-const f = () => fgen('_cascader')
+const f = () => fgen('_tree')
 
 const treeData = [
   {

@@ -22,7 +22,6 @@ export default {
   title: 'Rate'
 };
 
-
 export const Rates: React.FC = () => {
   const formProps = {
     fields

@@ -24,9 +24,9 @@ import monthRange from '../widgets/month-range'
 import week from '../widgets/week'
 import cascader from '../widgets/cascader'
 import treeSelect from '../widgets/treeSelect'
+import { moreWidgets, TWidgetMapping } from './register-widget'
 
-
-const widgets: { [widgetName: string]: WidgetFuncType } = {
+const widgets: TWidgetMapping = {
   empty,
   text,
   input,
@@ -53,8 +53,8 @@ const widgets: { [widgetName: string]: WidgetFuncType } = {
   week,
 }
 
-export function parseField(p: FieldProps) : { widget: WidgetFuncType, props: any } {
-  const widget = widgets[p.widget]
+export function parseField(p: FieldProps, _moreWidgets: TWidgetMapping = {}) : { widget: WidgetFuncType, props: any } {
+  const widget = moreWidgets[p.widget] || widgets[p.widget]
 
   return { widget, props: p }
 }
