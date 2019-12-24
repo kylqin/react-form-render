@@ -76,7 +76,7 @@ export function safeField (o: FieldPropsOptional, sto: TSafeTypeOption, noComput
     options: c.options || [],
     more: c.more ? new Map(Object.entries(c.more)) : new Map(),
     initialValue: c.initialValue,
-    properties: (((c.type === 'array' || c.type === 'object') && c.properties) || []).map(f => safeField(f, sto)),
+    properties: (((c.type === 'array' || c.type === 'object' || c.type === 'group') && c.properties) || []).map(f => safeField(f, sto)),
     compute: c.compute
   }
 }

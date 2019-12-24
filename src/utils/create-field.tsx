@@ -3,6 +3,8 @@ import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { ReactNode } from 'react';
 import { defaultValue, FieldProps } from '../models/Field';
 import array_ from '../widgets/array';
+import object from '../widgets/object';
+import group from '../widgets/group';
 import { parseField } from './parse-field';
 
 export interface WidgetMoreProps {
@@ -23,28 +25,23 @@ export interface ICreateFieldOptions {
 export const defaultICFO = { column: 1 }
 export type TCreateField = (form: WrappedFormUtils<any>, p: FieldProps, cfOptions: ICreateFieldOptions) => ReactNode
 
-const formObjectItem: TCreateField = (form, p, cfOptions) => {
-  const { field, properties, title } = p
-  return <div key={field}>
-    <div className='smart-form-object-title'>{title}</div>
-    <div className='smart-form-object-item'>
-      {createFields(form, properties.map(ppt => ({ ...ppt, field: field + '.' + ppt.field})), cfOptions)}
-    </div>
-  </div>
-}
-
-
 export const createField: TCreateField = (form, p, cfOptions) => {
-  const { field, type, span = 1, properties, required, disabled, more, title, tooltip, extra, initialValue } = p
+  const { field, widget: widgetType, span = 1, properties, required, disabled, more, title, tooltip, extra, initialValue } = p
   const { column, layout, isLastCol = false } = cfOptions || defaultICFO
 
-  if (type === 'object' && properties.length) {
+  if (widgetType === 'object' && properties.length) {
     return <Col key={field} span={24}>
-      {formObjectItem(form, p, cfOptions)}
+      {object(form, p, wmp, cfOptions)}
     </Col>
   }
 
-  if (type === 'array' && properties.length) {
+  if (widgetType === 'group' && properties.length) {
+    return <Col key={field} span={24}>
+      {group(form, p, wmp, cfOptions)}
+    </Col>
+  }
+
+  if (widgetType === 'array' && properties.length) {
     return <Col key={field} span={24}>
       {array_(form, p, wmp, cfOptions)}
     </Col>
