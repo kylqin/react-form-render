@@ -1,8 +1,11 @@
-import React from 'react'
-import ReactFromRender from '../react-form-render'
-import { fgen } from './_helpers'
-import Template from './_template'
 import { Icon } from 'antd'
+import React from 'react'
+import { fgen } from './_helpers'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Rate'
+};
 
 const f = () => fgen('_input')
 
@@ -18,16 +21,4 @@ const fields = [
   { field: f(), title: 'Count', type: 'number', widget: 'rate', more: { count: 7 } },
 ]
 
-export default {
-  title: 'Rate'
-};
-
-export const Rates: React.FC = () => {
-  const formProps = {
-    fields
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const Rates: React.FC = () => <RenderFields fields={fields} />

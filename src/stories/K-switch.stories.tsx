@@ -1,8 +1,11 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
-import { fgen } from './_helpers'
-import Template from './_template'
 import './_classname.css'
+import { fgen } from './_helpers'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Switch'
+};
 
 const f = () => fgen('_switch')
 
@@ -17,17 +20,4 @@ const fields = [
   { field: f(), title: 'className', type: 'boolean', widget: 'switch', more: { className: 'switch-classname' } },
 ]
 
-export default {
-  title: 'Switch'
-};
-
-
-export const Switchs: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const Switchs: React.FC = () => <RenderFields fields={fields} />

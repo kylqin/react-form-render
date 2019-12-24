@@ -1,7 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Upload'
+};
 
 const f = () => fgen('_upload')
 
@@ -24,17 +27,4 @@ const fields = [
   { field: f(), title: 'LT picture-card', type: 'array', widget: 'upload', more: { multiple: true, listType: 'picture-card' } },
 ]
 
-export default {
-  title: 'Upload'
-};
-
-
-export const uploads: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const uploads: React.FC = () => <RenderFields fields={fields} />

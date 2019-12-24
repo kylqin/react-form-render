@@ -1,7 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Slider'
+};
 
 const f = () => fgen('_slider')
 
@@ -55,17 +58,4 @@ const fields = [
   ]},
 ]
 
-export default {
-  title: 'Slider'
-};
-
-
-export const Sliders: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const Sliders: React.FC = () => <RenderFields fields={fields} />

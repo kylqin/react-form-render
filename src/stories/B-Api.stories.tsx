@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default {
-  title: 'API'
+  title: 'Documents|API'
 }
 
 export const Schema = () => <div>Schema</div>

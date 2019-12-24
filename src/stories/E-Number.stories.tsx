@@ -1,7 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Number'
+};
 
 const f = () => fgen('_input')
 
@@ -32,17 +35,5 @@ const fields = [
   ]}
 ]
 
-export default {
-  title: 'Number'
-};
 
-
-export const Numbers: React.FC = () => {
-  const formProps = {
-    fields
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const Numbers: React.FC = () => <RenderFields fields={fields} />

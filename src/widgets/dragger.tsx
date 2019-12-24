@@ -17,7 +17,7 @@ const dragger: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget
     'customRequest',
     'data',
     // 'defaultFileList',
-    'disabled',
+    // 'disabled',
     // 'fileList',
     'headers',
     'listType',

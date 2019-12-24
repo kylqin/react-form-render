@@ -1,8 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
-import { injectFieldProps } from '../utils/inject-field-props'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Input'
+};
 
 const f = () => fgen('_input')
 
@@ -21,25 +23,4 @@ const fields = [
   { field: f(), title: 'Input addonBefore', type: 'string', widget: 'input', more: { addonBefore: '+86' } },
 ]
 
-export default {
-  title: 'Input'
-};
-
-
-export const Inputs: React.FC = () => {
-  const formProps = {
-    fields: injectFieldProps(
-      fields,
-      { 'switch01:title': '注入的Title' },
-      {
-        'ops-ABC': [{ value: 'a', label: 'A' }, { value: 'b', label: 'B' }],
-        'obj01.input02:title': '注入的Title 哈哈',
-        'arr01[].input02:extra': '这是一个注入的EXTRA~'
-      }
-    )
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const Inputs: React.FC = () => <RenderFields fields={fields}/>

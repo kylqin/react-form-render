@@ -1,7 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Array'
+};
 
 const f = () => fgen('_field')
 
@@ -14,17 +17,4 @@ const fields = [
   ]}
 ]
 
-export default {
-  title: 'Array'
-};
-
-
-export const arrays: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const arrays: React.FC = () => <RenderFields fields={fields} />

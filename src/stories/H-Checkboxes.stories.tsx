@@ -1,7 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Checkboxes'
+};
 
 const f = () => fgen('_checkboxes')
 
@@ -18,17 +21,4 @@ const fields = [
   { field: f(), title: 'InitialValue', type: 'array', widget: 'checkboxes', options: options, initialValue: ['a', 'c'] },
 ]
 
-export default {
-  title: 'Checkboxes'
-};
-
-
-export const Checkboxes: React.FC = () => {
-  const formProps = {
-    fields
-  }
-
-  return <Template
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const Checkboxes: React.FC = () => <RenderFields fields={fields} />

@@ -1,25 +1,15 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
 
-const f = () => fgen('_time')
+export default {
+  title: 'Widgets|MonthRanePicker'
+};
+
+const f = () => fgen('_monthRange')
 
 const fields = [
   { field: f(), title: 'MonthRange', type: 'array', widget: 'month-range', more: {} },
 ]
 
-export default {
-  title: 'MonthRanePicker'
-};
-
-export const monthRanges: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    column={2}
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const monthRanges: React.FC = () => <RenderFields column={2} fields={fields} />

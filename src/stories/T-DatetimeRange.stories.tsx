@@ -1,7 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|DatetimeRange'
+};
 
 const f = () => fgen('_datetimerange')
 
@@ -9,18 +12,4 @@ const fields = [
   { field: f(), title: 'DateTimeRange', type: 'array', widget: 'datetime-range', more: {} },
 ]
 
-export default {
-  title: 'DatetimeRange'
-};
-
-
-export const datetimeRanges: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    column={2}
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const datetimeRanges: React.FC = () => <RenderFields column={2} fields={fields} />

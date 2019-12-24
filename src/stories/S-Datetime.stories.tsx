@@ -1,7 +1,10 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
 import { fgen } from './_helpers'
-import Template from './_template'
+import RenderFields from './_renderFields'
+
+export default {
+  title: 'Widgets|Datetime'
+};
 
 const f = () => fgen('_datetime')
 
@@ -9,18 +12,4 @@ const fields = [
   { field: f(), title: 'Date', type: 'date', widget: 'datetime', more: {} },
 ]
 
-export default {
-  title: 'Datetime'
-};
-
-
-export const datetimes: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    column={2}
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const datetimes: React.FC = () => <RenderFields column={2} fields={fields} />

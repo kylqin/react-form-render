@@ -1,10 +1,13 @@
 import React from 'react'
 import { Button, Icon } from 'antd'
-import ReactFromRender from '../react-form-render'
-import { fgen } from './_helpers'
-import Template from './_template'
-import './_classname.css'
 import moment from 'moment'
+import { fgen } from './_helpers'
+import RenderFields from './_renderFields'
+import './_classname.css'
+
+export default {
+  title: 'Widgets|Time'
+};
 
 const f = () => fgen('_time')
 
@@ -35,18 +38,5 @@ const fields = [
   { field: f(), title: 'use12Hours', type: 'time', widget: 'time', more: { use12Hours: true } },
 ]
 
-export default {
-  title: 'Time'
-};
 
-
-export const times: React.FC = () => {
-  const formProps = {
-    fields,
-  }
-
-  return <Template
-    column={2}
-    configForm={cfg => <ReactFromRender {...formProps} {...cfg} />}
-  />
-}
+export const times: React.FC = () => <RenderFields column={4} fields={fields}/>
