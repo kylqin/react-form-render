@@ -14,7 +14,7 @@ const select: WidgetFuncType = (form, p, { propsForm, fieldOptions, propsWidget 
     // 'defaultValue',
     'number',
     'LabeledValue',
-    'disabled',
+    // 'disabled',
     'dropdownClassName',
     'dropdownMatchSelectWidth',
     'dropdownRender',
