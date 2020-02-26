@@ -26,6 +26,9 @@ module.exports = {
               }),
             },
           },
+          {
+            loader: require.resolve('react-docgen-typescript-loader'),
+          },
         ],
         exclude: /node_modules|stories/
       },

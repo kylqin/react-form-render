@@ -1,8 +1,6 @@
 import React from 'react'
-import ReactFromRender from '../react-form-render'
-import { fgen } from './_helpers'
-import Template from './_template'
 import './_classname.css'
+import { fgen } from './_helpers'
 import RenderFields from './_renderFields'
 
 export default {

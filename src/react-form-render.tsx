@@ -9,14 +9,31 @@ import './style.less'
 
 
 export interface IReactFormRenderProps {
-  layout: string
+  /**
+   * Form fields layout.
+   * @default horizontal
+   */
+  layout: 'horizontal' | 'vertical'
+  /**
+   * Number of the form fields columns.
+   * @default 3
+   */
   column: number
+  /**
+   * Disabled form or not.
+   * @default false
+   */
   disabled: boolean
+  /**
+   * Fields configuration
+   */
   fields: FieldPropsOptional[]
 }
 
+type Props = IReactFormRenderProps & FormComponentProps
 
-class ReactFormRender extends React.Component<IReactFormRenderProps & FormComponentProps> {
+
+class ReactFormRender extends React.Component<Props> {
   componentDidMount () {
     this.forceUpdate()
   }

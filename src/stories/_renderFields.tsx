@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactFromRender from '../react-form-render'
-import { fgen } from './_helpers'
 import Template from './_template'
 
 type TRenderFieldsProps = {
